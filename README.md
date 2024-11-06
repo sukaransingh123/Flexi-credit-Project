@@ -69,6 +69,12 @@ This project was a fantastic learning experience for improving HTML and CSS skil
 
 ---
 
+## 🤝 Contributions
+ - Feel free to fork this project, submit issues, or make pull requests. Contributions are always welcome!
+
+
+
+
 ## 🛠 Setup & Installation
 
 1. **Clone the Repository**
