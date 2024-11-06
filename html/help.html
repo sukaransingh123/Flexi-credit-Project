@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Get Help - Nike</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        header, nav {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1em;
+            background-color: #f9f9f9;
+            border-bottom: 1px solid #ddd;
+        }
+
+        header .logo {
+            font-size: 2em;
+            font-weight: bold;
+        }
+
+        nav a {
+            margin: 0 1em;
+            text-decoration: none;
+            color: #333;
+            font-weight: 600;
+        }
+
+        .container {
+            padding: 2em;
+            text-align: center;
+        }
+
+        .container h1 {
+            font-size: 2em;
+            margin-bottom: 1em;
+        }
+
+        .search-bar {
+            position: relative;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        .search-bar input {
+            width: 100%;
+            padding: 0.75em;
+            padding-right: 3em;
+            font-size: 1em;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            outline: none;
+        }
+
+        .search-bar button {
+            position: absolute;
+            top: 50%;
+            right: 1em;
+            transform: translateY(-50%);
+            border: none;
+            background: none;
+            cursor: pointer;
+            font-size: 1.25em;
+            color: #333;
+        }
+
+        .quick-assists {
+            margin-top: 2em;
+            text-align: left;
+        }
+
+        .quick-assists h2 {
+            font-size: 1.25em;
+            margin-bottom: 1em;
+            color: #333;
+        }
+
+        .faq-section {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2em;
+            margin-top: 1em;
+        }
+
+        .faq-category {
+            flex: 1 1 200px;
+            min-width: 200px;
+        }
+
+        .faq-category h3 {
+            font-size: 1.1em;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 0.5em;
+        }
+
+        .faq-category ul {
+            list-style-type: none;
+        }
+
+        .faq-category li {
+            margin: 0.5em 0;
+        }
+
+        .faq-category a {
+            text-decoration: none;
+            color: #0071e3;
+        }
+
+        .faq-category a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">Nike</div>
+        <nav>
+            <a href="men.html">Men</a>
+            <a href="women.html">Women</a>
+            <a href="kids.html">Kids</a>
+        </nav>
+    </header>
+
+    <div class="container">
+        <h1>GET HELP</h1>
+        <div class="search-bar">
+            <input type="text" placeholder="What can we help you with?">
+            <button>&#128269;</button> <!-- Search icon -->
+        </div>
+
+        <div class="quick-assists">
+            <h2>Quick Assists</h2>
+            <p>Answers to our most frequently asked questions are just one click away.</p>
+            <div class="faq-section">
+                <div class="faq-category">
+                    <h3>Returns</h3>
+                    <ul>
+                        <li><a href="#">What is Nike's return policy?</a></li>
+                        <li><a href="#">How do I return my Nike order?</a></li>
+                        <li><a href="#">Where is my refund?</a></li>
+                        <li><a href="#">View all</a></li>
+                    </ul>
+                </div>
+                <div class="faq-category">
+                    <h3>Dispatch & Delivery</h3>
+                    <ul>
+                        <li><a href="#">What are Nike's delivery options?</a></li>
+                        <li><a href="#">Can my Nike order be dispatched internationally?</a></li>
+                        <li><a href="#">Does my Nike order need to clear customs?</a></li>
+                        <li><a href="#">View all</a></li>
+                    </ul>
+                </div>
+                <div class="faq-category">
+                    <h3>Orders & Payment</h3>
+                    <ul>
+                        <li><a href="#">Where is my Nike order?</a></li>
+                        <li><a href="#">Can I cancel or change my Nike order?</a></li>
+                        <li><a href="#">What are Nike's payment options?</a></li>
+                        <li><a href="#">View all</a></li>
+                    </ul>
+                </div>
+                <div class="faq-category">
+                    <h3>Shopping</h3>
+                    <ul>
+                        <li><a href="#">How do I find the right size and fit?</a></li>
+                        <li><a href="#">How can I get Nike's best deals?</a></li>
+                        <li><a href="#">Does Nike offer product advice?</a></li>
+                        <li><a href="#">View all</a></li>
+                    </ul>
+                </div>
+                <div class="faq-category">
+                    <h3>Nike Membership & Apps</h3>
+                    <ul>
+                        <li><a href="#">What is Nike Membership?</a></li>
+                        <li><a href="#">How can I join Nike SNKRS drawings?</a></li>
+                        <li><a href="#">How do I get Nike's newest sneaker releases?</a></li>
+                        <li><a href="#">View all</a></li>
+                    </ul>
+                </div>
+                <div class="faq-category">
+                    <h3>Company Info</h3>
+                    <ul>
+                        <li><a href="#">Do Nike shoes have a warranty?</a></li>
+                        <li><a href="#">What is Nike's mission?</a></li>
+                        <li><a href="#">Where can I learn more about Nike, Inc.?</a></li>
+                        <li><a href="#">View all</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

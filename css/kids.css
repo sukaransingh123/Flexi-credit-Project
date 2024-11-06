@@ -1,0 +1,279 @@
+/* General Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: sans-serif;
+  }
+  
+  /* Top Header */
+  #top-header {
+    padding: 2px 0;
+    background-color: #f5f5f5;
+  }
+  
+  /* Above Navigation */
+  #above-nav {
+    display: flex;
+    justify-content: end;
+    margin-right: 35px;
+    font-size: 12px;
+    padding: 2px;
+  }
+  
+  #above-nav p {
+    margin-top: 4px;
+    margin-left: 13px;
+    cursor: pointer;
+  }
+  
+  #above-nav img {
+    width: 25px;
+    margin-right: 81%;
+    cursor: pointer;
+  }
+  
+  /* Container */
+  #container {
+    width: 100%;
+    text-align: center;
+  }
+  
+  /* Main Navigation */
+  nav {
+    width: 100%;
+    display: flex;
+    margin-top: 2px;
+    background-color: white;
+  }
+  
+  #nav-text {
+    display: flex;
+    justify-content: space-between;
+    margin-left: 30%;
+  }
+  
+  #nav-text p {
+    margin: 15px;
+    cursor: pointer;
+    position: relative;
+  }
+  
+  #nav-text p::after {
+    content: "";
+    width: 0;
+    height: 3px;
+    position: absolute;
+    bottom: -24px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #706f6f;
+  }
+  
+  #nav-text p:hover::after {
+    width: 110%;
+  }
+  
+  nav ul {
+    flex: 1;
+    text-align: right;
+    padding-right: 30px;
+  }
+  
+  nav ul li {
+    display: inline-block;
+  }
+  
+  .logo {
+    width: 8.5%;
+    cursor: pointer;
+    padding: 15px;
+    margin: 0 25px 0;
+  }
+  
+  /* Icons */
+  .search-icon, .bag-icon, .heart {
+    font-size: 35px;
+    cursor: pointer;
+    margin: 10px 0;
+    padding: 5px;
+  }
+  
+  .search-icon:hover, .heart:hover, .bag-icon:hover {
+    background-color: #dad6d6;
+    border-radius: 50%;
+  }
+  
+  /* Hero Section */
+  #kid-section {
+    padding: 18px 0 34px 10px;
+  }
+  
+  .kid-text {
+    font-size: 24px;
+    font-weight: 100;
+    padding: 5px;
+    margin: 0 25px 0;
+  }
+  
+  #kid-menu {
+    display: flex;
+    justify-content: space-between;
+    margin-left: 30%;
+  }
+  
+  #kid-menu p {
+    margin: 4px 20px 0;
+    cursor: pointer;
+    position: relative;
+  }
+  
+  #kid-menu p:hover {
+    color: #6d7175;
+  }
+  
+  #image1 img {
+    width: 90%;
+    margin: 0 38px 10px;
+  }
+  
+  #content {
+    margin-top: 30px;
+  }
+  
+  .heading-2 {
+    font-family: Helvetica;
+    font-size: 72px;
+    font-weight: bolder;
+    line-height: 1.4;
+    letter-spacing: -5px;
+    cursor: pointer;
+    margin-bottom: 5px;
+  }
+  
+  .heading-0 {
+    font-weight: 100;
+    margin-top: 13px;
+  }
+  
+  #btnn {
+    margin-top: 15px;
+  }
+  
+  .btn {
+    padding: 8px 28px;
+    border-radius: 21px;
+    font-size: 18px;
+    background: #111;
+    color: #fff;
+    font-weight: 500;
+    cursor: pointer;
+    border: 0.01px solid black;
+  }
+  .btn:hover {
+    background-color: rgb(126, 123, 123);
+  }
+  
+  /* Footwear Section */
+  .content-header {
+    text-align: left;
+    font-size: 22px;
+    margin: 80px 0 0 70px;
+  }
+  
+  .list-footwear {
+    display: flex;
+    flex-direction: row;
+    overflow: scroll;
+    padding-bottom: 20px;
+    margin: 10px 50px;
+  }
+  .list-footwear img {
+    width: 393px;
+    height: 440px;
+    margin: 10px;
+  }
+  .list-footwear div {
+    text-align: left;
+    margin-top: 20px;
+  }
+  
+  /* Image Section */
+  #img1 {
+    width: 90%;
+    margin: 10px;
+  }
+  
+  /* Footer Section */
+  #footer {
+    height: 320px;
+    background-color: black;
+    color: white;
+    padding: 40px 63px;
+  }
+  
+  .fotter-div div {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    row-gap: 10px;
+    font-size: 10px;
+    line-height: 2;
+    font-weight: 600;
+  }
+  
+  ul li {
+    list-style-type: none;
+  }
+  
+  #footer div {
+    display: flex;
+    justify-content: flex-start;
+    column-gap: 50px;
+  }
+  
+  #content-last p {
+    font-size: 11px;
+    margin-right: 20px;
+  }
+  
+  .fotter-text-1 p:hover {
+    color: white;
+    cursor: pointer;
+  }
+  .list-image {
+    display: flex;
+    flex-direction: row;
+    overflow: scroll;
+    scrollbar-color: #757575 transparent;
+    padding-bottom: 30px;
+    transition: 0.3s;
+    margin: 10px 55px;
+  }
+  
+  #kid-categories {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+    border-top: 1px solid #ccc;
+  }
+  
+  .category {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .category h3 {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+  
+  .category p {
+    font-size: 14px;
+    color: #6b6e70;
+    margin: 5px 0;
+    cursor: pointer;
+  }
+  

@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>bag</title>
+    
+    <style>
+        body{
+            padding: 5%;
+        }
+        #supMaindiv{
+               display: flex;
+        }
+       
+           
+        #md{
+            display: flex;
+        }
+        button{
+            color: white;
+            background-color: black;
+            border-radius: 25px;
+            width: 80%;
+            height: 60px;
+            text-align: center;
+        }
+        #summary{
+            margin-left: 30%;
+        }
+       
+    </style>
+
+</head>
+<body>
+    <div id="md">
+   
+<div>
+<div id = "product">
+
+</div>
+</div>
+<div id="summary"> 
+    <h2>summary</h2>  
+    <h3 id=subtotal>subtotal ₹</h3>
+    <p id="esti">Estimated delivery and handling  ₹</p>
+   
+    <hr>
+    <p id="totall">total ₹</p>
+ <hr>
+ <button onclick="checkout()">checkout</button>
+</div>
+</div>
+   
+ 
+
+
+    
+    <script>
+//get data from localstorage
+var price = 0;
+var dcharge =200;
+var total=0;
+let parent = document.getElementById("product")
+
+let bag=JSON.parse(localStorage.getItem("bag"));
+function showProduct(){
+bag.forEach(element => {
+  let maindiv= document.createElement("div")
+  maindiv.style.display="flex"
+     //for image---------------------------------------------
+    //creating image tag
+    let div1=document.createElement("div")
+    let img= document.createElement("img")
+    img.height=200
+    img.width=200
+    //asigning src value
+    img.src=element.image
+    //console.log(img)
+                                                                                                                         //element.image
+    div1.append(img) 
+    maindiv.append(div1)
+    //for image---------------------------------------------
+
+    //for data---------------------------------------------  
+    let div2=document.createElement("div")
+
+    let div21=document.createElement("div")
+
+    let head1=document.createElement("h2")
+
+    let div22=document.createElement("div")
+
+    let p1=document.createElement("p")
+
+    let div23=document.createElement("div")
+
+div21.textContent=element.a
+head1.textContent=element.b
+div22.textContent=element.c
+p1.textContent=element.d//price of item
+
+//console.log(element.d)
+//console.log(Number(element.d))
+ price=price+(Number(element.d))
+//console.log(cost)
+
+div23.textContent=element.e
+div2.append(div21,head1,div22,p1,div23)
+maindiv.append(div2)
+
+parent.append(maindiv)
+
+
+                                                                                                
+    
+});
+//console.log(price)
+if(price>7000){
+    dcharge=0;
+    
+}
+ total = price+dcharge
+subtotal.append(price)
+esti.append(dcharge)
+totall.append(total)
+                      
+
+}
+
+showProduct()
+if(localStorage.getItem("pdata")===null){
+    localStorage.setItem("pdata", JSON.stringify([]))
+}
+
+function checkout(){
+let fdata = JSON.parse(localStorage.getItem("pdata"))
+fdata.push({price,dcharge,total});
+
+localStorage.setItem("pdata", JSON.stringify(fdata));
+    console.log("fdata:",fdata)
+    
+    location.href="checkout.html"
+}
+
+
+
+
+
+    </script>
+</body>
+</html>
