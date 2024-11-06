@@ -176,6 +176,7 @@
   
   /* Footwear Section */
   .content-header {
+    padding-bottom: 10px;
     text-align: left;
     font-size: 22px;
     margin: 80px 0 0 70px;
