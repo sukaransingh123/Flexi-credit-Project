@@ -41,3 +41,38 @@ The **Nike Website Clone** is a responsive, fully-functional website designed us
 ---
 
 
+---
+
+## 📸 Screenshots
+
+| Homepage                                | Product Page                           |
+|-----------------------------------------|----------------------------------------|
+| ![Homepage Screenshot](https://dummyimage.com/300x200/eee/aaa.png&text=Homepage) | ![Product Page Screenshot](https://dummyimage.com/300x200/eee/aaa.png&text=Product+Page) |
+
+
+---
+
+## 🤔 Challenges and Learning
+
+This project was a fantastic learning experience for improving HTML and CSS skills, particularly in creating complex layouts and responsive design. Key challenges included:
+- Designing a responsive grid layout.
+- Implementing hover effects and animations.
+- Mimicking the high-quality UI/UX of a professional brand site.
+
+---
+
+## 📈 Future Improvements
+
+- **JavaScript Interactivity**: Adding interactive functionality for cart management, filtering, and product searching.
+- **Backend Integration**: Connecting the front-end with a database to manage real product data.
+- **User Authentication**: Implementing sign-in and sign-up features.
+
+---
+
+## 🛠 Setup & Installation
+
+1. **Clone the Repository**
+   ```bash
+   git clone https://github.com/yourusername/Nike-Website-Clone.git
+
+
