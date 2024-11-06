@@ -4,158 +4,171 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>bag</title>
+    <title>Bag</title>
     
     <style>
-        body{
+        body {
             padding: 5%;
         }
-        #supMaindiv{
-               display: flex;
-        }
-       
-           
-        #md{
+        #supMaindiv {
             display: flex;
         }
-        
-
-        button{
+        #md {
+            display: flex;
+        }
+        button {
             color: white;
             background-color: black;
             border-radius: 25px;
             width: 80%;
             height: 60px;
             text-align: center;
+            cursor: pointer;
         }
-        #summary{
+        #summary {
             margin-left: 30%;
         }
-       
     </style>
-
 </head>
 <body>
     <div id="md">
-   
-<div>
-<div id = "product">
+        <div>
+            <div id="product"></div>
+        </div>
+        <div id="summary"> 
+            <h2>Summary</h2>  
+            <h3 id="subtotal">Subtotal: ₹</h3>
+            <p id="estimatedDelivery">Estimated Delivery and Handling: ₹</p>
+            <hr>
+            <p id="total">Total: ₹</p>
+            <hr>
+            <a href="checkout.html">
+                <button onclick="checkout()">Checkout</button>
+            </a>
+            <button style="margin-top: 10px;" onclick="clearCart()">Clear Cart</button> <!-- Clear Cart Button -->
+        </div>
+    </div>
 
-</div>
-</div>
-<div id="summary"> 
-    <h2>summary</h2>  
-    <h3 id=subtotal>subtotal ₹</h3>
-    <p id="esti">Estimated delivery and handling  ₹</p>
-   
-    <hr>
-    <p id="totall">total ₹</p>
- <hr>
-
-
- <a href="checkout.html">
-    <button onclick="checkout()">checkout</button>
- </a>
- 
- 
-</div>
-</div>
-   
- 
-
-
-    
     <script>
-//get data from localstorage
-var price = 0;
-var dcharge =200;
-var total=0;
-let parent = document.getElementById("product")
+        // Variables for price calculations
+        let subtotalPrice = 0;
+        const deliveryCharge = 200;
+        let totalPrice = 0;
 
-let bag=JSON.parse(localStorage.getItem("bag"));
-function showProduct(){
-bag.forEach(element => {
-  let maindiv= document.createElement("div")
-  maindiv.style.display="flex"
-     //for image---------------------------------------------
-    //creating image tag
-    let div1=document.createElement("div")
-    let img= document.createElement("img")
-    img.height=200
-    img.width=200
-    //asigning src value
-    img.src=element.image
-    //console.log(img)
-                                                                                                                         //element.image
-    div1.append(img) 
-    maindiv.append(div1)
-    //for image---------------------------------------------
+        // Function to format numbers as currency (₹)
+        function formatCurrency(value) {
+            return `₹ ${value.toLocaleString()}`;
+        }
+        
+        // Display products in the bag
+        function showProduct() {
+            const productContainer = document.getElementById("product");
+            const bag = JSON.parse(localStorage.getItem("bag")) || [];
 
-    //for data---------------------------------------------  
-    let div2=document.createElement("div")
+            // Reset subtotal before recalculation
+            subtotalPrice = 0;
 
-    let div21=document.createElement("div")
+            // If the cart is empty, display an empty cart message
+            if (bag.length === 0) {
+                productContainer.innerHTML = '<p>Your cart is empty.</p>'; // Show empty cart message
+                document.getElementById("subtotal").textContent = "Subtotal: ₹0";
+                document.getElementById("estimatedDelivery").textContent = "Estimated Delivery and Handling: ₹0";
+                document.getElementById("total").textContent = "Total: ₹0";
+                return;
+            }
 
-    let head1=document.createElement("h2")
+            // Clear previous products before rendering new ones
+            productContainer.innerHTML = ''; // Empty the container for the new products
 
-    let div22=document.createElement("div")
+            bag.forEach(item => {
+                // Create the main container for each product
+                const productDiv = document.createElement("div");
+                productDiv.style.display = "flex";
+                
+                // Product image
+                const imageDiv = document.createElement("div");
+                const img = document.createElement("img");
+                img.height = 200;
+                img.width = 200;
+                img.src = item.image;
+                imageDiv.appendChild(img);
+                
+                // Product details
+                const detailsDiv = document.createElement("div");
+                detailsDiv.style.marginLeft = "20px";
+                
+                // Product name
+                const nameDiv = document.createElement("div");
+                const productName = document.createElement("h2");
+                productName.textContent = item.name;
+                nameDiv.appendChild(productName);
+                
+                // Product category
+                const categoryDiv = document.createElement("div");
+                const productCategory = document.createElement("p");
+                productCategory.textContent = item.category;
+                categoryDiv.appendChild(productCategory);
+                
+                // Product price
+                const priceDiv = document.createElement("div");
+                const productPrice = document.createElement("p");
+                productPrice.textContent = `Price:  ${item.price}`;
+                priceDiv.appendChild(productPrice);
 
-    let p1=document.createElement("p")
+                // Parse price and add to subtotal (remove ₹ and commas)
+                const priceValue = parseFloat(item.price.replace(/[₹,]/g, ''));
+                if (!isNaN(priceValue)) {
+                    subtotalPrice += priceValue;  // Accumulate subtotal
+                }
+                
+                // Append all product details to the product div
+                detailsDiv.append(nameDiv, categoryDiv, priceDiv);
+                productDiv.append(imageDiv, detailsDiv);
+                
+                // Append product div to main container
+                productContainer.append(productDiv);
+            });
 
-    let div23=document.createElement("div")
+            // Apply delivery charge if subtotal is less than ₹7000
+            const estimatedDelivery = subtotalPrice > 7000 ? 0 : deliveryCharge;
 
-div21.textContent=element.a
-head1.textContent=element.b
-div22.textContent=element.c
-p1.textContent=element.d//price of item
+            // Calculate total price
+            totalPrice = subtotalPrice + estimatedDelivery;
 
-//console.log(element.d)
-//console.log(Number(element.d))
- price=price+(Number(element.d))
-//console.log(cost)
+            // Update summary section with calculated values
+            document.getElementById("subtotal").textContent = `Subtotal: ${formatCurrency(subtotalPrice)}`;
+            document.getElementById("estimatedDelivery").textContent = `Estimated Delivery and Handling: ${formatCurrency(estimatedDelivery)}`;
+            document.getElementById("total").textContent = `Total: ${formatCurrency(totalPrice)}`;
+        }
 
-div23.textContent=element.e
-div2.append(div21,head1,div22,p1,div23)
-maindiv.append(div2)
+        // Checkout function to save data and navigate to checkout page
+        function checkout() {
+            const finalData = JSON.parse(localStorage.getItem("pdata")) || [];
+            finalData.push({ subtotalPrice, deliveryCharge, totalPrice });
+            localStorage.setItem("pdata", JSON.stringify(finalData));
+            location.href = "checkout.html";
+        }
 
-parent.append(maindiv)
+        // Initialize the display of products
+        showProduct();
 
+        // Clear Cart function - remove all items and update UI
+        function clearCart() {
+            // Remove all items from the bag in localStorage
+            localStorage.removeItem("bag");
 
-                                                                                                
-    
-});
-//console.log(price)
-if(price>7000){
-    dcharge=0;
-    
-}
- total = price+dcharge
-subtotal.append(price)
-esti.append(dcharge)
-totall.append(total)
-                      
+            // Reset product display and summary
+            document.getElementById("product").innerHTML = ''; // Empty product container
+            document.getElementById("subtotal").textContent = "Subtotal: ₹0";
+            document.getElementById("estimatedDelivery").textContent = "Estimated Delivery and Handling: ₹0";
+            document.getElementById("total").textContent = "Total: ₹0";
 
-}
+            // Show empty cart message
+            document.getElementById("product").innerHTML = '<p>Your cart is empty.</p>';
 
-showProduct()
-if(localStorage.getItem("pdata")===null){
-    localStorage.setItem("pdata", JSON.stringify([]))
-}
-
-function checkout(){
-let fdata = JSON.parse(localStorage.getItem("pdata"))
-fdata.push({price,dcharge,total});
-
-localStorage.setItem("pdata", JSON.stringify(fdata));
-    console.log("fdata:",fdata)
-    
-    location.href="checkout.html"
-}
-
-
-
-
-
+            // Optionally, refresh the product display to reflect the updated cart state
+            showProduct();
+        }
     </script>
 </body>
 </html>

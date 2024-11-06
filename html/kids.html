@@ -113,42 +113,42 @@
             
                         <!-- FootWear Details -->
                         <div class="list-footwear">
-                            <div><img src="../Pictures/kid-img1.png" alt="">
+                            <div onclick="openModal(0)"><img src="../Pictures/kid-img1.png" alt="">
                                 <p class="highlight">Nike Vomero 5</p>
                                 <p> Younger Kids' Shoes</p>
                                 <p class="highlight">MRP : ₹ 8 195.00</p>
                             </div>
-                            <div><img src="../Pictures/kid-img2.png" alt="">
+                            <div onclick="openModal(1)"><img src="../Pictures/kid-img2.png" alt="">
                                 <p class="highlight">Nike Air Force 1 LV8</p>
                                 <p> Younger Kids' Shoes</p>
                                 <p class="highlight">MRP : ₹ 7 995.00</p>
                             </div>
-                            <div><img src="../Pictures/kid-img3.png" alt="">
+                            <div onclick="openModal(2)"><img src="../Pictures/kid-img3.png" alt="">
                                 <p class="highlight">Nike P-6000</p>
                                 <p> Younger Kids' Shoes</p>
                                 <p class="highlight">MRP : ₹ 7 995.00</p>
                             </div>
-                            <div><img src="../Pictures/kid-img4.png" alt="">
+                            <div onclick="openModal(3)"><img src="../Pictures/kid-img4.png" alt="">
                                 <p class="highlight">Nike Force 1 Low EasyOn</p>
                                 <p> Younger Kids' Shoes</p>
                                 <p class="highlight">MRP : ₹ 5 895.00</p>
                             </div>
-                            <div><img src="../Pictures/kid-img5.png" alt="">
+                            <div onclick="openModal(4)"><img src="../Pictures/kid-img5.png" alt="">
                                 <p class="highlight">Nike Force 1 Low SE EasyOn</p>
                                 <p>Younger Kids' Shoes</p>
                                 <p class="highlight">MRP : ₹ 6 495.00</p>
                             </div>
-                            <div><img src="../Pictures/kid-img6.png" alt="">
+                            <div onclick="openModal(5)"><img src="../Pictures/kid-img6.png" alt="">
                                 <p class="highlight">Nike Air Force 1 '07 Next Nature</p>
                                 <p>Younger Kids' Shoes</p>
                                 <p class="highlight">MRP : ₹ 8 195.00</p>
                             </div>
-                            <div><img src="../Pictures/kid-img-7.jpeg" alt="">
+                            <div onclick="openModal(6)"><img src="../Pictures/kid-img-7.jpeg" alt="">
                                 <p class="highlight">Nike C1TY 'Coveralls'</p>
                                 <p>Younger Kids' Shoes</p>
                                 <p class="highlight">MRP : ₹ 8 695.00</p>
                             </div>
-                            <div><img src="../Pictures/kid-img8.png" alt="">
+                            <div onclick="openModal(7)"><img src="../Pictures/kid-img8.png" alt="">
                                 <p class="highlight">Nike Initiator</p>
                                 <p>Younger Kids' Shoes</p>
                                 <p class="highlight">MRP : ₹ 7 495.00</p>
@@ -338,6 +338,101 @@
                 <!-- footer part End -->
             
                 </div>
+                <!-- Modal Structure for Shoe Details -->
+                <div id="shoeModal" class="modal" style="display: none;">
+                    <span onclick="closeModal()" class="close">&times;</span>
+                    <img id="modalImage" src="" alt="Shoe Image" style="width: 100%; height: auto;">
+                    <h2 id="modalName"></h2>
+                    <p id="modalCategory"></p>
+                    <p id="modalPrice"></p>
+                    <button id="addToBagButton" onclick="addToBag()">Add to Bag</button>
+                </div>
+                
+                    <script>
+                        // Array to store shoe data
+                        const shoes = [
+                            {
+                                image: "../Pictures/kid-img1.png",
+                                name: "Nike Vomero 5",
+                                category: "Younger Kids' Shoes",
+                                price: "₹ 8,195.00"
+                            },
+                            {
+                                image: "../Pictures/kid-img2.png",
+                                name: "Nike Air Force 1 LV8'",
+                                category: "Younger Kids' Shoes",
+                                price: "₹ 7,995.00"
+                            },
+                            {
+                                image: "../Pictures/kid-img3.png",
+                                name: "Nike P-6000",
+                                category: "Younger Kids' Shoes",
+                                price: "₹ 7,995.00"
+                            },
+                            {
+                                image: "../Pictures/kid-img4.png",
+                                name: "Nike Force 1 Low EasyOn",
+                                category: "Younger Kids' Shoes",
+                                price: "₹ 5,895.00"
+                            },
+                            {
+                                image: "../Pictures/kid-img5.png",
+                                name: "Nike Force 1 Low SE EasyOn",
+                                category: "Younger Kids' Shoes",
+                                price: "₹ 6,495.00"
+                            },
+                            {
+                                image: "../Pictures/kid-img6.png",
+                                name: "Nike Air Force 1 '07 Next Nature",
+                                category: "Younger Kids' Shoes",
+                                price: "₹ 8,195.00"
+                            },
+                            {
+                                image: "../Pictures/kid-img7.png",
+                                name: "Nike C1TY 'Coveralls",
+                                category: "Younger Kids' Shoes",
+                                price: "₹ 8,695.00"
+                            },
+                            {
+                                image: "../Pictures/kid-img8.png",
+                                name: "Nike Initiator",
+                                category: "Younger Kids' Shoes",
+                                price: "₹ 7,495.00"
+                            },
+                            
+                        ];
+                        
+                        // Variable to hold the currently selected shoe for adding to bag
+                        let selectedShoe = null;
+                        
+                        // Function to open the modal and populate it with shoe details
+                        function openModal(index) {
+                            const shoe = shoes[index];
+                            document.getElementById("modalImage").src = shoe.image;
+                            document.getElementById("modalName").textContent = shoe.name;
+                            document.getElementById("modalCategory").textContent = shoe.category;
+                            document.getElementById("modalPrice").textContent = shoe.price;
+                            
+                            document.getElementById("shoeModal").style.display = "block";
+                            
+                            // Save the selected shoe to be added to the bag later
+                            selectedShoe = shoe;
+                        }
+                        
+                        // Function to close the modal
+                        function closeModal() {
+                            document.getElementById("shoeModal").style.display = "none";
+                        }
+                        
+                        // Function to add the selected shoe to the bag in localStorage
+                        function addToBag() {
+                            let bag = JSON.parse(localStorage.getItem("bag")) || [];
+                            bag.push(selectedShoe);  // Use the globally saved selectedShoe
+                            localStorage.setItem("bag", JSON.stringify(bag));
+                            alert("Added to bag!");
+                            closeModal();
+                        }
+                        </script>
             </body>
             
             </html>
