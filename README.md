@@ -73,6 +73,6 @@ This project was a fantastic learning experience for improving HTML and CSS skil
 
 1. **Clone the Repository**
    ```bash
-   git clone https://github.com/yourusername/Nike-Website-Clone.git
+   git clone git@github.com:sukaransingh123/flexi_credit-.git
 
 
