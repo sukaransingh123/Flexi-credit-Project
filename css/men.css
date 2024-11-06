@@ -238,8 +238,9 @@
     margin-right: 20px;
   }
   
-  .fotter-text-1 p:hover {
+  .fotter-text-1 p{
     color: white;
+    font-weight: bold;
     cursor: pointer;
   }
   .list-image {
@@ -275,6 +276,5 @@
     font-size: 14px;
     color: #6b6e70;
     margin: 5px 0;
-    cursor: pointer;
   }
   
