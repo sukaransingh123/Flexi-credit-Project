@@ -45,7 +45,7 @@ The **Nike Website Clone** is a responsive, fully-functional website designed us
 
 ## 📸 Screenshots
 
-| Homepage                                | Product Page                           | Homepage                                |
+| Kids page                                | Womens Page                           | Mens page                                |
 |-----------------------------------------|----------------------------------------|-----------------------------------------|
 | ![KidsPage Screenshot](md_images/kids.png) | ![WomensPage Page Screenshot](md_images/women_home.png) | ![MensPage Screenshot](md_images/men_home.png) |
 
