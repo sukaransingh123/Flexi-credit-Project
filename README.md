@@ -10,7 +10,7 @@ Welcome to the **Nike Website Clone** project! This is a front-end web developme
 The **Nike Website Clone** is a responsive, fully-functional website designed using **HTML** and **CSS**. It showcases various Nike products, complete with categories, filtering options, and product detail pages to replicate a professional e-commerce environment.
 
 **Demo Screenshot**  
-![Nike Clone Preview](md_images/mens_home.png)
+![Nike Clone Preview](md_images/homepage.png)
 
 ---
 
@@ -45,9 +45,9 @@ The **Nike Website Clone** is a responsive, fully-functional website designed us
 
 ## 📸 Screenshots
 
-| Homepage                                | Product Page                           |
-|-----------------------------------------|----------------------------------------|
-| ![Homepage Screenshot](md_images/kids.png) | ![Product Page Screenshot](md_images/womens_home.png) |
+| Homepage                                | Product Page                           | Homepage                                |
+|-----------------------------------------|----------------------------------------|-----------------------------------------|
+| ![KidsPage Screenshot](md_images/kids.png) | ![WomensPage Page Screenshot](md_images/women_home.png) | ![MensPage Screenshot](md_images/men_home.png) |
 
 
 ---
