@@ -178,46 +178,47 @@
         <!-- footer part End -->
     </div>
 
+    <script>
+        let flag;  // Declare flag globally
+
+function signin(e) {
+    e.preventDefault();  // Prevent form submission (page refresh)
+
+    let myform = document.getElementById("form");
+
+    let email = myform.email.value;
+    let password = myform.password.value;
+
+    console.log("e", email);
+    console.log("p", password);
+
+    // Get users from localStorage
+    let all_users = JSON.parse(localStorage.getItem("Nike-Users"));
+
+    // Initialize flag to false at the beginning of each signin attempt
+    flag = false;
+
+    // Loop through the users to check for valid credentials
+    for (let i = 0; i < all_users.length; i++) {
+        let user = all_users[i];
+
+        if (email === user.email && password === user.password) {
+            alert("Welcome");
+            window.location.href = "index.html";  // Redirect to homepage after successful login
+            return;  // Exit the function as login is successful
+        }
+    }
+
+    // If no match is found, show the invalid credentials alert
+    alert("You Entered Invalid Credentials");
+}
+       
+    </script>
+
+
 
 </body>
 
 </html>
 
 
-<script>
-
-    let flag;
-
-    function signin(e) {
-        // alert('Hii Pankaj') 
-        e.preventDefault()
-
-        let myform = document.getElementById("form")
-
-        // console.log("myform", myform)
-        let email = myform.email.value
-        let password = myform.password.value
-
-        console.log("e", email)
-        console.log("p", password)
-        let all_users = JSON.parse(localStorage.getItem("Nike-Users"));
-        //console.log("all_users", all_users)
-        all_users.forEach(function (user) {
-
-            if (email === user.email && password === user.password) {
-                alert("welcome")
-                window.location.href = "index.html"
-
-            } else {
-                flag = true;
-            }
-
-        });
-        if (flag == true) {
-            alert("You Entered Invalid Credential")
-        }
-
-    }
-
-
-</script>

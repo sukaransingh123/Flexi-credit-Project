@@ -86,41 +86,105 @@
                     <div class="card-back">
                         <img id="logo" src="../Pictures/nike-logo.png">
                         <h1>Become a Nike Member</h1>
-                        <form action="" id="myForm" class="myform">
+                        <form id="myForm" class="myform">
                             <input type="email" id="email" class="input-box" placeholder="Your Email ID" required>
                             <input type="password" id="password" class="input-box" placeholder="Password" required>
                             <input type="text" id="fName" class="input-box" placeholder="First Name" required>
                             <input type="text" id="lName" class="input-box" placeholder="Last Name" required>
-                            <input type="text" id="date" class="input-box" placeholder="Date of Birth"
-                                onfocus="(this.type='date')">
-                            <p class="birthday-text">Get a Nike Member Reward every year on your Birthday</h5>
-
-                                <select id="country" class="arrenge">
-                                    <option value="India">India</option>
-                                    <option value="USA">USA</option>
-                                    <option value="China">China</option>
-                                    <option value="Nepal">Nepal</option>
-                                    <option value="Australia">Australia</option>
-                                    <option value="France">France</option>
-                                    <option value="Germany">Germany</option>
-                                    <option value="South-africa">South-africa</option>
-                                    <option value="Nigeria">Nigeria</option>
-                                    <option value="japan">Japan</option>
-                                    <option value="Maxico">Maxico</option>
-                                    <option value="Argentina">Argentina</option>
-                                    <option value="Brazil">Brazil</option>
-                                    <option value="Canada">Canada</option>
-                                    <option value="Singapre">Singapre</option>
-                                    <option value="Sweden">Sweden</option>
-                                </select>
-
-                                <select id="gender" class="arrenge">
-                                    <option value="">Gender</option>
-                                    <option value="male">Male</option>
-                                    <option value="female">Female</option>
-                                </select>
-
+                            <input type="text" id="date" class="input-box" placeholder="Date of Birth" onfocus="(this.type='date')" required>
+                            <p class="birthday-text">Get a Nike Member Reward every year on your Birthday</p>
+                        
+                            <select id="country" class="arrenge" required>
+                                <option value="India">India</option>
+                                <option value="USA">USA</option>
+                                <option value="China">China</option>
+                                <option value="Nepal">Nepal</option>
+                                <option value="Australia">Australia</option>
+                                <option value="France">France</option>
+                                <option value="Germany">Germany</option>
+                                <option value="South-africa">South-africa</option>
+                                <option value="Nigeria">Nigeria</option>
+                                <option value="japan">Japan</option>
+                                <option value="Maxico">Maxico</option>
+                                <option value="Argentina">Argentina</option>
+                                <option value="Brazil">Brazil</option>
+                                <option value="Canada">Canada</option>
+                                <option value="Singapre">Singapre</option>
+                                <option value="Sweden">Sweden</option>
+                            </select>
+                        
+                            <select id="gender" class="arrenge" required>
+                                <option value="">Gender</option>
+                                <option value="male">Male</option>
+                                <option value="female">Female</option>
+                            </select>
+                        
+                            <input type="checkbox" required>
+                            <span class="span-text">Sign Up for emails to get updates from Nike on<br> products, offers, and your Member benefits</span>
+                        
+                            <p class="text">By creating an account, you agree to Nike's <u>Privacy Policy.</u> and <u>Terms of Use</u></p>
+                            <button onclick="getUserData(event)" type="submit" class="submit-btn">JOIN US</button>
+                            <p class="text1">Already a Member? <a href="log-in.html">Sign In</a></p>
                         </form>
+                        
+
+                        <script>
+
+                        function getUserData(e) {
+                            e.preventDefault();  // Prevent form submission (page refresh)
+
+                            let myForm = document.getElementById("myForm");
+
+                            // Get values from the form
+                            let email = myForm.email.value;
+                            let password = myForm.password.value;
+                            let fName = myForm.fName.value;
+                            let lName = myForm.lName.value;
+                            let dob = myForm.date.value;
+                            let country = myForm.country.value;
+                            let gender = myForm.gender.value;
+
+                            // Check if all fields are filled out
+                            if (!email || !password || !fName || !lName || !dob || !country || !gender) {
+                                alert("Please fill out all fields.");
+                                return;
+                            }
+
+                            // If all fields are filled, proceed with saving the data
+                            if (localStorage.getItem("Nike-Users") === null) {
+                                localStorage.setItem("Nike-Users", JSON.stringify([]));
+                            }
+
+                            // Create the user data object
+                            let userData = {
+                                email,
+                                password,
+                                fName,
+                                lName,
+                                dob,
+                                country,
+                                gender,
+                            };
+
+                            console.log(userData);
+
+                            // Retrieve the existing users from localStorage
+                            let arr = JSON.parse(localStorage.getItem("Nike-Users"));
+
+                            // Add the new user to the array
+                            arr.push(userData);
+
+                            // Save the updated array back to localStorage
+                            localStorage.setItem("Nike-Users", JSON.stringify(arr));
+
+                            // Redirect to the homepage after successful registration
+                            window.location.href = "log-in.html";
+                        }
+
+                        
+                        </script>
+                        
+
                         <input type="checkbox"><span class="span-text">Sign Up for emails to get updates from Nike on
                             <br>
                             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; products,
@@ -130,7 +194,8 @@
                                 of
                                 Use</u>
                         </p>
-                        <button onclick="getUserData(event)" type="submit" class="submit-btn">JOIN US</button>
+                        <button onclick="getUserData(event)"  type="submit" class="submit-btn">JOIN US</button>
+                        
                         <p class="text1"> Already a Member? <a href="log-in.html">Sign In</a> </p>
                     </div>
                 </div>
@@ -222,45 +287,3 @@
 </html>
 
 
-<script>
-
-    function getUserData(e) {
-        // alert("User data")
-
-        e.preventDefault();
-
-        let myForm = document.getElementById("myForm");
-
-        let email = myForm.email.value;
-        let password = myForm.password.value;
-        let fName = myForm.fName.value;
-        let lName = myForm.lName.value;
-        let dob = myForm.date.value;
-        let country = myForm.country.value;
-        let gender = myForm.gender.value;
-
-        if (localStorage.getItem("Nike-Users") === null) {
-            localStorage.setItem("Nike-Users", JSON.stringify([]))
-        }
-
-
-        let userData = {
-            email,
-            password,
-            fName,
-            lName,
-            dob,
-            country,
-            gender,
-        };
-
-        console.log(userData);
-
-        let arr = JSON.parse(localStorage.getItem("Nike-Users"));
-
-        arr.push(userData);
-
-        localStorage.setItem("Nike-Users", JSON.stringify(arr));
-    }
-
-</script>
