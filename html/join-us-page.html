@@ -5,52 +5,118 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nike Membership. Nike IN</title>
+    <title>Nike Membership | Nike IN</title>
     <link rel="stylesheet" href="../css/style.css">
     <link rel="icon" type="image/x-icon" href="../Pictures/favicon-32x32.png">
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+    <style>
+        /* Global font and color styling */
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            color: #111;
+            margin: 0;
+            padding: 0;
+        }
+
+        #top-header p,
+        nav p,
+        .content-text p {
+            font-size: 16px;
+            line-height: 1.5;
+        }
+
+        .content-header,
+        .content-header2,
+        #text1 {
+            font-weight: bold;
+            font-size: 28px;
+            text-align: center;
+            margin: 20px 0;
+            color: #111;
+        }
+
+        /* Button container styling */
+        .button-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+            padding: 20px;
+            background-color: black;
+            border-radius: 10px;
+            margin-top: 20px;
+        }
+
+        .button-container a button {
+            color: white;
+            background-color: #333;
+            border: none;
+            padding: 12px 30px;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 5px;
+            font-weight: bold;
+            text-transform: uppercase;
+            transition: background-color 0.3s;
+        }
+
+        /* Hover effect */
+        .button-container a button:hover {
+            background-color: #555;
+        }
+
+        /* Additional styling for content text */
+        .content-text {
+            max-width: 700px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .content-text p {
+            font-size: 18px;
+            margin: 10px 0;
+            color: #333;
+        }
+
+        #video {
+            display: flex;
+            justify-content: center;
+            margin: 30px 0;
+        }
+    </style>
 </head>
 
 <body>
-    <!-- icon-script-web (https://ionic.io/ionicons) -->
-
-    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
-    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
-
     <div id="container">
-        <!-- Header part till slideshow -->
 
-        <div id="top-header">
-
-            <!-- header -1 -->
-
+        <!-- Header Section -->
+        <header id="top-header">
             <div id="above-nav">
-                <img src="../Pictures/jordan.png" alt="">
-                <a style="color:black; text-decoration:none;" href="help.html">
+                <img src="../Pictures/jordan.png" alt="Jordan Brand Logo">
+                <a href="help.html" style="color:black; text-decoration:none;">
                     <p>Help</p>
                 </a>
                 <p>|</p>
-                <a style="color:black; text-decoration:none;" href="join-us-page.html">
+                <a href="join-us-page.html" style="color:black; text-decoration:none;">
                     <p>Join us</p>
                 </a>
                 <p>|</p>
-                <a style="color:black; text-decoration:none;" href="log-in.html">
+                <a href="log-in.html" style="color:black; text-decoration:none;">
                     <p>Sign in</p>
                 </a>
-                
             </div>
 
-            <!-- header -2 -->
-
             <nav>
-                <img src="../Pictures/nike-logo.png" class="logo">
+                <img src="../Pictures/nike-logo.png" class="logo" alt="Nike Logo">
                 <div id="nav-text">
-                    <a style="color:black; text-decoration:none;" href="men.html">
+                    <a href="men.html" style="color:black; text-decoration:none;">
                         <p>Men</p>
                     </a>
-                    <a style="color:black; text-decoration:none;" href="women.html">
+                    <a href="women.html" style="color:black; text-decoration:none;">
                         <p>Women</p>
                     </a>
-                    <a style="color:black; text-decoration:none;" href="kids.html">
+                    <a href="kids.html" style="color:black; text-decoration:none;">
                         <p>Kids</p>
                     </a>
                 </div>
@@ -58,67 +124,66 @@
                     <li>
                         <ion-icon name="search-outline" class="search-icon"></ion-icon>
                     </li>
-
                     <li>
-                        <a style="color:black; text-decoration:none;" href="bag.html">
+                        <a href="bag.html" style="color:black; text-decoration:none;">
                             <ion-icon name="bag-outline" class="bag-icon"></ion-icon>
                         </a>
                     </li>
                 </ul>
             </nav>
 
-            <!-- slideShow  (Dynamic) -->
-
             <div class="slide">
-                <p id="f1"> FREE DELIVERY</p>
-                <p id="f2"> Applies to order of Rs 9999 or more.</p>
+                <p id="f1">FREE DELIVERY</p>
+                <p id="f2">Applies to orders of Rs 9999 or more.</p>
             </div>
-        </div>
+        </header>
 
+        <!-- Main Content Section -->
+        <main>
+            <section class="content-header">
+                <p>Nike Membership</p>
+            </section>
 
-        <!-- Header part till End -->
+            <section id="video">
+                <!-- Video Section with Simplified Path and Fallback -->
+                <video width="1240" height="720" autoplay loop muted controls poster="../Pictures/video-cover.jpeg">
+                    <source src="../Pictures/Nike Membership. Nike IN.mp4" type="video/mp4">
+                    <source src="Nike_Membership_Nike_IN.webm" type="video/webm">
+                    <p>Your browser does not support HTML video. Please try a different browser.</p>
+                </video>
+            </section>
 
-        <div class="content-header">
-            <p>Nike Membership</p>
-        </div>
+            <section class="content-text">
+                <p id="text1">Where All Athletes Belong</p>
+                <div>
+                    <p>Trying something new is never pretty, but it's pretty awesome.</p>
+                    <p>No matter how many times you fall, you're still coming out on top. Trying new things is always a win.</p>
+                </div>
+                <div>
+                    <p>Join the Nike community as we Play New. As a member, you'll have access to inspiration, the latest Nike products, and a community of people trying new things, just like you.</p>
+                </div>
+                
+                <!-- Black container for buttons -->
+                <div class="button-container">
+                    <a href="join.html"><button>Join Us</button></a>
+                    <a href="log-in.html"><button>Sign In</button></a>
+                </div>
+            </section>
 
-        <div id="video">
-            <!--autoplay="autoplay"   loop="loop" -->
-            <video width="1240" height="720" loop="loop" controls="controls" muted="muted" poster="video-cover.jpeg">
-                <source src="Nike Membership. Nike IN.mp4" type="video/mp4">
-            </video>
-        </div>
+            <section class="content-header2">
+                <p>Don't Miss</p>
+            </section>
 
-        <div class="content-text">
-            <p id="text1"> Where All Atheletes Belong</p>
-            <div>
-                <p>Trying Something new is never pretty. But it pretty awesome.</p>
-                <p>Because no matter how many times you fall down, you're stil comming out.</p>
-                <p>on top. Trying new things is always a win.</p>
-            </div>
-            <div>
-                <p>Join the Nike community as we Play New. As a Member, you'll</p>
-                <p>have access to inspiration, the latest Nike products and a community</p>
-                <p>od people who are trying something new, just like you.</p>
-            </div>
-            <div id="two-btn">
-                <div> <a href="join.html"> <button>Join us</button> </a></div>
-                <div><a href="log-in.html"> <button> Sign In</button> </a> </div>
-            </div>
-        </div>
+            <section id="first-img">
+                <img src="../Pictures/membership.jpeg" id="first-img-id" alt="Nike Membership Highlights">
+            </section>
+        </main>
 
-        <div class="content-header2">
-            <p>Don't Miss</p>
-        </div>
-
-        <div id="first-img"><img src="Pictures/membership.jpeg" id="first-img-id" alt=""> </div>
-
-        <!-- footer part start -->
-
-        <div id="footer">
-            <div class="fotter-div">
-                <div class="fotter-text">
-                    <a style="color:white; text-decoration:none;" href="findaStore.html">
+        <!-- Footer Section -->
+        <footer id="footer">
+            <div class="footer-div">
+                <div class="footer-text">
+                    <a href="findaStore.html" style="color:white; text-decoration:none;">
                         <p>FIND A STORE</p>
                     </a>
                     <p>BECOME A MEMBER</p>
@@ -126,7 +191,7 @@
                     <p>STUDENT DISCOUNTS</p>
                     <p>SEND US FEEDBACK</p>
                 </div>
-                <div class="fotter-text-1">
+                <div class="footer-text-1">
                     <p>GET HELP</p>
                     <p>Order Status</p>
                     <p>Delivery</p>
@@ -135,14 +200,14 @@
                     <p>Contact Us on Nike.com Inquiries</p>
                     <p>Contact Us On All Other Inquiries</p>
                 </div>
-                <div class="fotter-text-1">
+                <div class="footer-text-1">
                     <p>ABOUT NIKE</p>
                     <p>News</p>
                     <p>Careers</p>
                     <p>Investors</p>
                     <p>Sustainability</p>
                 </div>
-                <div id="fotter-icon">
+                <div id="footer-icon">
                     <div>
                         <ion-icon name="logo-twitter"></ion-icon>
                     </div>
@@ -155,7 +220,6 @@
                     <div>
                         <ion-icon name="logo-instagram"></ion-icon>
                     </div>
-
                 </div>
             </div>
             <hr id="footer-hr">
@@ -164,22 +228,16 @@
                     <p id="india">
                         <ion-icon name="location-outline" id="location-icon"></ion-icon>India
                     </p>
-                    <p>&copy 2021 Nike, inc. All Rights
-                        Reserved</p>
+                    <p>&copy; 2021 Nike, Inc. All Rights Reserved</p>
                 </div>
-                <!-- <span>
-                    <ion-icon name="heart"></ion-icon>
-                </span> -->
                 <div id="content-last">
                     <p>Guides</p>
                     <p>Terms of Sale</p>
-                    <p>Terms of use</p>
+                    <p>Terms of Use</p>
                     <p>Nike Privacy Policy</p>
                 </div>
             </div>
-        </div>
-
-        <!-- footer part End -->
+        </footer>
     </div>
 </body>
 
