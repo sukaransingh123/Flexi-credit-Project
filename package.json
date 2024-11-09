@@ -1,0 +1,20 @@
+{
+  "name": "flexi_credit-",
+  "version": "1.0.0",
+  "description": "Welcome to the **Nike Website Clone** project! This is a front-end web development project built to replicate the design and functionality of a modern Nike e-commerce website. The project aims to give a realistic shopping experience and includes several interactive features.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.21.1",
+    "jsonwebtoken": "^9.0.2",
+    "mongoose": "^8.8.1"
+  }
+}

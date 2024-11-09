@@ -15,78 +15,15 @@
     <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
 
     <div id="container">
-        <!-- Header part till slideshow -->
-
-        <div id="top-header">
-
-            <!-- header -1 -->
-            
-            <div id="above-nav">
-                <img src="../Pictures/jordan.png" alt="">
-                <a style="color: black; text-decoration: none; padding-top: 4px;" href="index.html">Home</a>
-                <p>|</p>
-                <a style="color:black; text-decoration:none;" href="help.html">
-                    <p>Help</p>
-                </a>
-                <p>|</p>
-                <a style="color:black; text-decoration:none;" href="join.html">
-                    <p>Join us</p>
-                </a>
-                <p>|</p>
-                <a style="color:black; text-decoration:none;" href="log-in.html">
-                    <p>Sign in</p>
-                </a>
-            </div>
-
-            <!-- header -2 -->
-
-            <nav>
-                <img src="../Pictures/nike-logo.png" class="logo">
-                <div id="nav-text">
-                    <a href="women.html" style="text-decoration:none; color:black;">
-                        <p>Men</p>
-                    </a>
-                    <a href="women.html" style="text-decoration:none; color:black;">
-                        <p>Women</p>
-                    </a>
-                    <a href="women.html" style="text-decoration:none; color:black;">
-                        <p>Kids</p>
-                    </a>
-                </div>
-                <ul>
-                    <li>
-                        <ion-icon name="search-outline" class="search-icon"></ion-icon>
-                    </li>
-                    <li>
-                        <a style="color:black; text-decoration:none;" href="bag.html">
-                            <ion-icon name="bag-outline" class="bag-icon"></ion-icon>
-                        </a>
-                    </li>
-                    <!-- <li> <img src="nav.png" class="nav-icon"></li> -->
-                </ul>
-            </nav>
-            <!-- <hr> -->
-
-            <!-- slideShow  (Dynamic) -->
-
-            <!-- <div class="slide">
-                  <p id="f1"> FREE DELIVERY</p>
-                  <p id="f2"> Applies to order of $1400 or more. <u>View details </u></p>
-              </div> -->
-        </div>
-
-        <!-- Header part till End -->
-
-        <!-- header end -->
+        <!-- Header and content as you have already added -->
 
         <div class="container1">
             <div class="card">
                 <div class="inner-box" id="card">
-                    <!-- ----------------------------------------------------- -->
                     <div class="card-back">
                         <img id="logo" src="../Pictures/nike-logo.png">
                         <h1>Become a Nike Member</h1>
-                        <form id="myForm" class="myform">
+                        <form id="myForm" class="myform" onsubmit="getUserData(event)">
                             <input type="email" id="email" class="input-box" placeholder="Your Email ID" required>
                             <input type="password" id="password" class="input-box" placeholder="Password" required>
                             <input type="text" id="fName" class="input-box" placeholder="First Name" required>
@@ -104,12 +41,12 @@
                                 <option value="Germany">Germany</option>
                                 <option value="South-africa">South-africa</option>
                                 <option value="Nigeria">Nigeria</option>
-                                <option value="japan">Japan</option>
-                                <option value="Maxico">Maxico</option>
+                                <option value="Japan">Japan</option>
+                                <option value="Mexico">Mexico</option>
                                 <option value="Argentina">Argentina</option>
                                 <option value="Brazil">Brazil</option>
                                 <option value="Canada">Canada</option>
-                                <option value="Singapre">Singapre</option>
+                                <option value="Singapore">Singapore</option>
                                 <option value="Sweden">Sweden</option>
                             </select>
                         
@@ -123,167 +60,76 @@
                             <span class="span-text">Sign Up for emails to get updates from Nike on<br> products, offers, and your Member benefits</span>
                         
                             <p class="text">By creating an account, you agree to Nike's <u>Privacy Policy.</u> and <u>Terms of Use</u></p>
-                            <button onclick="getUserData(event)" type="submit" class="submit-btn">JOIN US</button>
+                            <button type="submit" class="submit-btn">JOIN US</button>
                             <p class="text1">Already a Member? <a href="log-in.html">Sign In</a></p>
                         </form>
-                        
 
                         <script>
+                            function getUserData(e) {
+                                e.preventDefault();  // Prevent the form from submitting (page refresh)
+                                
+                                let myForm = document.getElementById("myForm");
+                                
+                                // Get values from the form
+                                let email = myForm.email.value;
+                                let password = myForm.password.value;
+                                let fName = myForm.fName.value;
+                                let lName = myForm.lName.value;
+                                let dob = myForm.date.value;
+                                let country = myForm.country.value;
+                                let gender = myForm.gender.value;
+                                
+                                // Check if all fields are filled out
+                                if (!email || !password || !fName || !lName || !dob || !country || !gender) {
+                                    alert("Please fill out all fields.");
+                                    return;
+                                }
 
-                        function getUserData(e) {
-                            e.preventDefault();  // Prevent form submission (page refresh)
+                                // Prepare the user data object
+                                let userData = {
+                                    email,
+                                    password,  // In production, make sure to hash the password
+                                    fName,
+                                    lName,
+                                    dob,
+                                    country,
+                                    gender
+                                };
 
-                            let myForm = document.getElementById("myForm");
+                                // Send the user data to the backend to register
+                                fetch('http://127.0.0.1:5001/api/register', {
+    method: 'POST',
+    headers: {
+        'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(userData)
+})
+.then(response => response.json())
+.then(data => {
+    if (data.success) {
+        alert("Registration successful! You can now log in.");
+        window.location.href = "log-in.html";  // Redirect to login page
+    } else {
+        alert(data.message);  // Display the error message
+    }
+})
+.catch(error => {
+    console.error("Error during registration:", error.message);  // Log the error message
+    console.error(error.stack);  // Log the full stack trace for more context
+    alert("Something went wrong. Please try again later.");  // Show a friendly error message to the user
+});
 
-                            // Get values from the form
-                            let email = myForm.email.value;
-                            let password = myForm.password.value;
-                            let fName = myForm.fName.value;
-                            let lName = myForm.lName.value;
-                            let dob = myForm.date.value;
-                            let country = myForm.country.value;
-                            let gender = myForm.gender.value;
-
-                            // Check if all fields are filled out
-                            if (!email || !password || !fName || !lName || !dob || !country || !gender) {
-                                alert("Please fill out all fields.");
-                                return;
                             }
-
-                            // If all fields are filled, proceed with saving the data
-                            if (localStorage.getItem("Nike-Users") === null) {
-                                localStorage.setItem("Nike-Users", JSON.stringify([]));
-                            }
-
-                            // Create the user data object
-                            let userData = {
-                                email,
-                                password,
-                                fName,
-                                lName,
-                                dob,
-                                country,
-                                gender,
-                            };
-
-                            console.log(userData);
-
-                            // Retrieve the existing users from localStorage
-                            let arr = JSON.parse(localStorage.getItem("Nike-Users"));
-
-                            // Add the new user to the array
-                            arr.push(userData);
-
-                            // Save the updated array back to localStorage
-                            localStorage.setItem("Nike-Users", JSON.stringify(arr));
-
-                            // Redirect to the homepage after successful registration
-                            window.location.href = "log-in.html";
-                        }
-
-                        
                         </script>
-                        
 
-                        <input type="checkbox"><span class="span-text">Sign Up for emails to get updates from Nike on
-                            <br>
-                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; products,
-                            offers and your
-                            Member benefits</span>
-                        <p class="text">By creating an account, you agree to Nike's <u>Privacy Policy.</u> and <u>Terms
-                                of
-                                Use</u>
-                        </p>
-                        <button onclick="getUserData(event)"  type="submit" class="submit-btn">JOIN US</button>
-                        
-                        <p class="text1"> Already a Member? <a href="log-in.html">Sign In</a> </p>
                     </div>
                 </div>
             </div>
         </div>
 
+        <!-- footer part as is -->
 
-        <!-- footer started -->
-
-
-        <div id="footer">
-            <div class="fotter-div">
-                <div class="fotter-text">
-                    <p>BECOME A MEMBER</p>
-                    <p>SIGN UP FOR EMAIL</p>
-                    <p>STUDENT DISCOUNTS</p>
-                    <p>SEND US FEEDBACK</p>
-                </div>
-                <div class="fotter-text-1">
-                    <a style="color:white; text-decoration:none;" href="help.html">
-                        <p>HELP</p>
-                    </a>
-                    <p>Order Status</p>
-                    <p>Delivery</p>
-                    <p>Return</p>
-                    <p>Payment Options</p>
-                    <p>Contact Us on Nike.com Inquiries</p>
-                    <p>Contact Us On All Other Inquiries</p>
-                </div>
-                <div class="fotter-text-1">
-                    <p>ABOUT NIKE</p>
-                    <p>News</p>
-                    <p>Careers</p>
-                    <p>Investors</p>
-                    <p>Sustainability</p>
-                </div>
-                <div id="fotter-icon">
-                    <div>
-                        <a href="https://x.com/Nike" style="color: black; height: 25px;">
-                        <ion-icon name="logo-twitter" style="margin-bottom: 20px;"></ion-icon>
-                        </a>
-                    </div>
-                    <div>
-                        <a href="https://www.facebook.com/nike/" style="color: black; height: 25px;">
-                        <ion-icon name="logo-facebook" style="margin-bottom: 20px;"></ion-icon>
-                        </a>
-                    </div>
-                    <div>
-                        <a href="https://www.youtube.com/user/NIKE" style="color: black; height: 25px;">
-                        <ion-icon name="logo-youtube" style="margin-bottom: 20px;"></ion-icon>
-                        </a>
-                    </div>
-                    <div>
-                        <a href="https://www.instagram.com/nike/" style="color: black; height: 25px;">
-                        <ion-icon name="logo-instagram" style="margin-bottom: 20px;"></ion-icon>
-                        </a>
-                    </div>
-
-                </div>
-            </div>
-            <hr id="footer-hr">
-            <div id="copyright-section">
-                <div>
-                    <p id="india">
-                        <ion-icon name="location-outline" id="location-icon"></ion-icon>India
-                    </p>
-                    <p>&copy 2024 Nike, inc. All Rights
-                        Reserved</p>
-                </div>
-                <!-- <span>
-                <ion-icon name="heart"></ion-icon>
-            </span> -->
-                <div id="content-last">
-                    <p>Guides</p>
-                    <p>Terms of Sale</p>
-                    <p>Terms of use</p>
-                    <p>Nike Privacy Policy</p>
-                </div>
-            </div>
-        </div>
-
-        <!-- footer part End -->
     </div>
-
-
-
 </body>
 
 </html>
-
-
