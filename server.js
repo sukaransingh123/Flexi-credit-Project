@@ -9,17 +9,11 @@ const app = express();
 
 // CORS Configuration
 app.use(cors({
-    origin: (origin, callback) => {
-        const allowedOrigins = ['http://127.0.0.1:3000', 'http://localhost:3000'];
-        if (allowedOrigins.includes(origin) || !origin) {
-            callback(null, true);
-        } else {
-            callback(new Error('Not allowed by CORS'));
-        }
-    },
+    origin: '*', // Allow requests from any origin (use with caution in production)
     methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
     allowedHeaders: ['Content-Type', 'Authorization'],
 }));
+
 
 // Middleware to parse JSON data
 app.use(express.json());
