@@ -66,7 +66,7 @@
                             <input type="password" id="password" class="input-box" placeholder="Password" required>
                         </form>
                         <input type="checkbox" id="cheak"><span class="span-text">Keep me signed in</span>
-                        <a id="anchor1" href="">Forgotten your password?</a>
+                        <a href="forgot.html"><span class="span-text">Forgotten your password?</span></a>
                         <p class="text">By logging in, you agree to Nike's <u>Privacy Policy.</u> and <u>Terms of Use</u></p>
                         <button type="button" class="submit-btn" onclick="loginUser(event)">SIGN IN</button>
                         <p class="text1">Not a Member? <a href="join.html">Join Us</a></p>
@@ -75,6 +75,13 @@
                     </div>
                 </div>
             </div>
+        </div>
+
+        <!-- Delete Account Section -->
+        <div id="delete-user-section">
+            <h2>Delete Account</h2>
+            <p>Warning: This action cannot be undone!</p>
+            <button type="button" class="delete-btn" onclick="deleteUser(event)">Delete My Account</button>
         </div>
 
         <!-- footer started -->
@@ -145,48 +152,81 @@
             </div>
         </div>
 
-        <!-- footer part End -->
-    </div>
+        <script>
+            function loginUser(e) {
+                e.preventDefault();
+                const email = document.getElementById("email").value;
+                const password = document.getElementById("password").value;
 
-    <script>
-        function loginUser(e) {
-            e.preventDefault(); // Prevent the form from submitting the usual way
+                fetch('http://127.0.0.1:5002/api/login', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ email, password })
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        alert("Login successful!");
+                        window.location.href = "index.html";
+                    } else {
+                        document.getElementById("error-message").textContent = data.message;
+                        document.getElementById("error-message").style.display = 'block';
+                    }
+                })
+                .catch(error => alert("Error logging in. Please try again."));
+            }
 
-            // Get the values from the form
-            const email = document.getElementById("email").value;
-            const password = document.getElementById("password").value;
+            function resetPassword(e) {
+                e.preventDefault();
+                const email = document.getElementById("forgot-email").value;
 
-            // Create the login data object
-            const loginData = {
-                email: email,
-                password: password
-            };
+                fetch('http://127.0.0.1:5002/api/reset-password', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ email })
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        document.getElementById("reset-message").textContent = "Reset link sent!";
+                        document.getElementById("reset-message").style.display = 'block';
+                    } else {
+                        document.getElementById("reset-error-message").textContent = data.message;
+                        document.getElementById("reset-error-message").style.display = 'block';
+                    }
+                })
+                .catch(error => alert("Error resetting password. Try again."));
+            }
 
-            // Send the login request to the backend
-            fetch('http://127.0.0.1:5002/api/login', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(loginData)
-            })
-            .then(response => response.json())
-            .then(data => {
-                if (data.success) {
-                    alert("Login successful!");
-                    window.location.href = "index.html"; // Redirect to homepage
-                } else {
-                    // Display error message in the error-message div
-                    document.getElementById("error-message").textContent = data.message;
-                    document.getElementById("error-message").style.display = 'block';
-                }
-            })
-            .catch(error => {
-                console.error('Error during login:', error);
-                alert("There was an error logging in. Please try again.");
+            function deleteUser(e) {
+                e.preventDefault();
+                const confirmDelete = confirm("Are you sure you want to delete your account?");
+                if (!confirmDelete) return;
+
+                const userId = localStorage.getItem('userId');
+                fetch(`http://127.0.0.1:5002/api/user/${userId}`, {
+                    method: 'DELETE',
+                    headers: { 'Content-Type': 'application/json' }
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        alert("Account deleted.");
+                        window.location.href = "index.html";
+                    } else {
+                        alert("Error deleting account: " + data.message);
+                    }
+                })
+                .catch(error => alert("Error deleting account. Please try again."));
+            }
+
+            document.getElementById("anchor1").addEventListener("click", function(e) {
+                e.preventDefault();
+                document.getElementById("forgot-password-section").style.display = 'block';
+                document.querySelector(".container1").style.display = 'none';
             });
-        }
-    </script>
+        </script>
 
+    </div>
 </body>
 </html>
