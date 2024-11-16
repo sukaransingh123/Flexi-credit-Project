@@ -27,7 +27,7 @@
             aspect-ratio: 0.67;
             object-fit: contain;
             object-position: center;
-            width: 16px;
+
             margin: auto 0;
         }
         .modal-message {
@@ -78,15 +78,62 @@
     <section class="delete-modal" role="dialog" aria-labelledby="delete-modal-title">
         <header class="modal-header">
             <h2 id="delete-modal-title">Delete Account</h2>
+            <a href="log-in.html">
             <button class="close-icon" aria-label="Close modal">
                 <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/481b412906f45ab065738b21feb04f632727a0290268ef8ce33b7604203b5a1b?placeholderIfAbsent=true&apiKey=73a27bde94154699a46bd5abf98e03ca" alt="" width="16" height="24">
             </button>
+            </a>
         </header>
         <p class="modal-message">Are you sure you want to delete this Account? This action cannot be undone.</p>
         <div class="modal-actions">
+            <a href="index.html">
             <button class="cancel-button">Cancel</button>
-            <button class="delete-button">Delete</button>
+            </a>
+            <button type="button" onclick="deleteUser(event)" class="delete-button">Delete</button>
+            <div id="error-message" style="color: red; display: none;"></div> <!-- Error message section -->
         </div>
     </section>
+    <script>
+        function deleteUser(e) {
+    e.preventDefault();
+
+    // Confirm deletion
+    const confirmDelete = confirm("Are you sure you want to delete your account?");
+    if (!confirmDelete) return;
+
+    // Prompt for email and password
+    const email = prompt("Enter the email of the account you want to delete:");
+    if (!email) {
+        alert("Email is required to delete the account.");
+        return;
+    }
+
+    const password = prompt("Enter your password to confirm deletion:");
+    if (!password) {
+        alert("Password is required to delete the account.");
+        return;
+    }
+
+    // Send DELETE request to the server with email and password
+    fetch('http://127.0.0.1:5002/api/delete-user', {
+        method: 'DELETE',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email, password })
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            alert("Account deleted successfully.");
+            window.location.href = "index.html";  // Redirect to homepage
+        } else {
+            alert("Error: " + data.message);  // Display the error message
+        }
+    })
+    .catch(error => {
+        console.error("Error during account deletion:", error);
+        alert("An error occurred. Please try again.");
+    });
+}
+    </script>
 </body>
 </html>

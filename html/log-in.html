@@ -70,18 +70,12 @@
                         <p class="text">By logging in, you agree to Nike's <u>Privacy Policy.</u> and <u>Terms of Use</u></p>
                         <button type="button" class="submit-btn" onclick="loginUser(event)">SIGN IN</button>
                         <p class="text1">Not a Member? <a href="join.html">Join Us</a></p>
+                        <p class="text1">Want to delete your account? <a href="delete.html">Delete</a></p>
 
-                        <div id="error-message" style="color: red; display: none;"></div> <!-- Error message section -->
+                        
                     </div>
                 </div>
             </div>
-        </div>
-
-        <!-- Delete Account Section -->
-        <div id="delete-user-section">
-            <h2>Delete Account</h2>
-            <p>Warning: This action cannot be undone!</p>
-            <button type="button" class="delete-btn" onclick="deleteUser(event)">Delete My Account</button>
         </div>
 
         <!-- footer started -->
@@ -197,47 +191,6 @@
                 })
                 .catch(error => alert("Error resetting password. Try again."));
             }
-
-            function deleteUser(e) {
-    e.preventDefault();
-
-    // Confirm deletion
-    const confirmDelete = confirm("Are you sure you want to delete your account?");
-    if (!confirmDelete) return;
-
-    // Prompt for email and password
-    const email = prompt("Enter the email of the account you want to delete:");
-    if (!email) {
-        alert("Email is required to delete the account.");
-        return;
-    }
-
-    const password = prompt("Enter your password to confirm deletion:");
-    if (!password) {
-        alert("Password is required to delete the account.");
-        return;
-    }
-
-    // Send DELETE request to the server with email and password
-    fetch('http://127.0.0.1:5002/api/delete-user', {
-        method: 'DELETE',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email, password })
-    })
-    .then(response => response.json())
-    .then(data => {
-        if (data.success) {
-            alert("Account deleted successfully.");
-            window.location.href = "index.html";  // Redirect to homepage
-        } else {
-            alert("Error: " + data.message);  // Display the error message
-        }
-    })
-    .catch(error => {
-        console.error("Error during account deletion:", error);
-        alert("An error occurred. Please try again.");
-    });
-}
 
         </script>
 
