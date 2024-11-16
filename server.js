@@ -308,6 +308,32 @@ app.get('/api/get-user-email', async (req, res) => {
     }
 });
 
+app.delete('/api/delete-user', async (req, res) => {
+    const { email, password } = req.body;
+
+    try {
+        // Find the user by email
+        const user = await User.findOne({ email });
+        if (!user) {
+            return res.status(404).json({ success: false, message: "User not found" });
+        }
+
+        // Check if the password is correct
+        const isPasswordCorrect = await bcrypt.compare(password, user.password);
+        if (!isPasswordCorrect) {
+            return res.status(401).json({ success: false, message: "Incorrect password" });
+        }
+
+        // Delete the user from the database
+        await User.findOneAndDelete({ email });
+        res.status(200).json({ success: true, message: "Account deleted successfully" });
+
+    } catch (error) {
+        console.error("Error deleting user:", error);
+        res.status(500).json({ success: false, message: "Error deleting user" });
+    }
+});
+
 
 // Start Server
 const PORT = process.env.PORT || 5002;

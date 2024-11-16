@@ -199,32 +199,46 @@
             }
 
             function deleteUser(e) {
-                e.preventDefault();
-                const confirmDelete = confirm("Are you sure you want to delete your account?");
-                if (!confirmDelete) return;
+    e.preventDefault();
 
-                const userId = localStorage.getItem('userId');
-                fetch(`http://127.0.0.1:5002/api/user/${userId}`, {
-                    method: 'DELETE',
-                    headers: { 'Content-Type': 'application/json' }
-                })
-                .then(response => response.json())
-                .then(data => {
-                    if (data.success) {
-                        alert("Account deleted.");
-                        window.location.href = "index.html";
-                    } else {
-                        alert("Error deleting account: " + data.message);
-                    }
-                })
-                .catch(error => alert("Error deleting account. Please try again."));
-            }
+    // Confirm deletion
+    const confirmDelete = confirm("Are you sure you want to delete your account?");
+    if (!confirmDelete) return;
 
-            document.getElementById("anchor1").addEventListener("click", function(e) {
-                e.preventDefault();
-                document.getElementById("forgot-password-section").style.display = 'block';
-                document.querySelector(".container1").style.display = 'none';
-            });
+    // Prompt for email and password
+    const email = prompt("Enter the email of the account you want to delete:");
+    if (!email) {
+        alert("Email is required to delete the account.");
+        return;
+    }
+
+    const password = prompt("Enter your password to confirm deletion:");
+    if (!password) {
+        alert("Password is required to delete the account.");
+        return;
+    }
+
+    // Send DELETE request to the server with email and password
+    fetch('http://127.0.0.1:5002/api/delete-user', {
+        method: 'DELETE',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email, password })
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            alert("Account deleted successfully.");
+            window.location.href = "index.html";  // Redirect to homepage
+        } else {
+            alert("Error: " + data.message);  // Display the error message
+        }
+    })
+    .catch(error => {
+        console.error("Error during account deletion:", error);
+        alert("An error occurred. Please try again.");
+    });
+}
+
         </script>
 
     </div>
